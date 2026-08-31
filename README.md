@@ -35,13 +35,13 @@ Base URL: `http://localhost:8080`
 
 **Login / Register pages:**
 
-| Page | URL |
-|------|-----|
-| Grid Member Login (default) | `http://localhost:8080/gridMemberLogin` |
-| Administrator Login | `http://localhost:8080/adminsLogin` |
-| Public Supervisor Login | `http://localhost:8080/supervisorLogin` |
-| Public Supervisor Register | `http://localhost:8080/supervisorRegister` |
-| Decision Maker Login | `http://localhost:8080/decisionMakerLogin` |
+| Page | URL | Test account |
+|------|-----|--------------|
+| Grid Member Login (default) | `http://localhost:8080/gridMemberLogin` | `gm001` / `gm123` |
+| Administrator Login | `http://localhost:8080/adminsLogin` | `admin01` / `Admin@123` |
+| Public Supervisor Login | `http://localhost:8080/supervisorLogin` | `13800001111` / `sup123` |
+| Public Supervisor Register | `http://localhost:8080/supervisorRegister` | (self-register) |
+| Decision Maker Login | `http://localhost:8080/decisionMakerLogin` | `dm001` / `dm123` |
 
 **Role pages (after login):**
 
@@ -95,4 +95,10 @@ Base URL: `http://localhost:9090`
 
 ## Test Accounts
 
-See the account data in `sql/admins_test_data.sql` and `sql/补全数据.sql`.
+**Administrator** (admin login code / password): `admin01` / `Admin@123` — more accounts (`admin01`–`admin05`, `dataMgmt`, `audit01`, `report01`, `super01`, …) in `sql/admins_test_data.sql`
+
+**Grid Member** (code / password): `gm001`–`gm006`, all with password `gm123` — in `sql/补全数据.sql`
+
+**Public Supervisor** (phone / password): `13800001111`–`13800008888`, all with password `sup123` — in `sql/补全数据.sql`
+
+**Decision Maker** (username / password): `dm001` / `dm123`, `dm002` / `dm123`, `dm003` / `dm123` — in `sql/test_data.sql`

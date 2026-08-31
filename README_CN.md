@@ -33,13 +33,13 @@ nep-system/
 
 **登录/注册页面：**
 
-| 页面 | 地址 |
-|------|------|
-| 网格员登录（默认跳转） | `http://localhost:8080/gridMemberLogin` |
-| 管理员登录 | `http://localhost:8080/adminsLogin` |
-| 公众监督员登录 | `http://localhost:8080/supervisorLogin` |
-| 公众监督员注册 | `http://localhost:8080/supervisorRegister` |
-| 决策员登录 | `http://localhost:8080/decisionMakerLogin` |
+| 页面 | 地址 | 测试账号 |
+|------|------|----------|
+| 网格员登录（默认跳转） | `http://localhost:8080/gridMemberLogin` | `gm001` / `gm123` |
+| 管理员登录 | `http://localhost:8080/adminsLogin` | `admin01` / `Admin@123` |
+| 公众监督员登录 | `http://localhost:8080/supervisorLogin` | `13800001111` / `sup123` |
+| 公众监督员注册 | `http://localhost:8080/supervisorRegister` | （自行注册） |
+| 决策员登录 | `http://localhost:8080/decisionMakerLogin` | `dm001` / `dm123` |
 
 **角色页面（登录后）：**
 
@@ -93,4 +93,10 @@ nep-system/
 
 ## 测试账号
 
-见 `sql/admins_test_data.sql` 与 `sql/补全数据.sql` 中的账号数据。
+**管理员**（登录编码 / 密码）：`admin01` / `Admin@123`，更多账号（`admin01`–`admin05`、`dataMgmt`、`audit01`、`report01`、`super01` 等）见 `sql/admins_test_data.sql`
+
+**网格员**（编码 / 密码）：`gm001`–`gm006`，密码均为 `gm123`，见 `sql/补全数据.sql`
+
+**公众监督员**（手机号 / 密码）：`13800001111`–`13800008888`，密码均为 `sup123`，见 `sql/补全数据.sql`
+
+**决策员**（用户名 / 密码）：`dm001` / `dm123`、`dm002` / `dm123`、`dm003` / `dm123`，见 `sql/test_data.sql`
