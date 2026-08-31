@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.AqiFeedbackMapper">
+
+    <insert id="saveAqiFeedback" parameterType="com.example.entity.AqiFeedback">
+        insert into aqi_feedback (tel_id, province_id, city_id, address, information, estimated_grade, af_date, af_time, state, remarks)
+        values (#{telId}, #{provinceId}, #{cityId}, #{address}, #{information}, #{estimatedGrade}, #{afDate}, #{afTime}, #{state}, #{remarks})
+    </insert>
+
+    <select id="listAqiFeedbackAll" parameterType="com.example.entity.AqiFeedback" resultType="map">
+        select af.af_id as afId,
+               af.tel_id as telId,
+               af.province_id as provinceId,
+               af.city_id as cityId,
+               af.address as address,
+               af.information as information,
+               af.estimated_grade as estimatedGrade,
+               af.af_date as afDate,
+               af.af_time as afTime,
+               af.gm_id as gmId,
+               af.assign_date as assignDate,
+               af.assign_time as assignTime,
+               af.state as state,
+               af.remarks as remarks,
+               p.province_name as provinceName,
+               c.city_name as cityName,
+               a.aqi_explain as aqiExplain,
+               a.chinese_explain as chineseExplain,
+               a.color as color,
+               s.real_name as realName
+        from aqi_feedback af
+        left join grid_province p on af.province_id = p.province_id
+        left join grid_city c on af.city_id = c.city_id
+        left join aqi a on af.estimated_grade = a.aqi_id
+        left join supervisor s on af.tel_id = s.tel_id
+        <where>
+            <if test="provinceId != null">
+                af.province_id = #{provinceId}
+            </if>
+            <if test="cityId != null">
+                and af.city_id = #{cityId}
+            </if>
+            <if test="estimatedGrade != null">
+                and af.estimated_grade = #{estimatedGrade}
+            </if>
+            <if test="afDate != null and afDate != ''">
+                and af.af_date like concat('%',#{afDate},'%')
+            </if>
+        </where>
+        order by af.af_id desc
+    </select>
+
+    <select id="listAqiFeedbackByTelId" resultType="map">
+        select af.af_id as afId,
+               af.tel_id as telId,
+               af.province_id as provinceId,
+               af.city_id as cityId,
+               af.address as address,
+               af.information as information,
+               af.estimated_grade as estimatedGrade,
+               af.af_date as afDate,
+               af.af_time as afTime,
+               af.gm_id as gmId,
+               af.assign_date as assignDate,
+               af.assign_time as assignTime,
+               af.state as state,
+               af.remarks as remarks,
+               p.province_name as provinceName,
+               c.city_name as cityName,
+               a.aqi_explain as aqiExplain,
+               a.chinese_explain as chineseExplain,
+               a.color as color,
+               s.real_name as realName
+        from aqi_feedback af
+        left join grid_province p on af.province_id = p.province_id
+        left join grid_city c on af.city_id = c.city_id
+        left join aqi a on af.estimated_grade = a.aqi_id
+        left join supervisor s on af.tel_id = s.tel_id
+        where af.tel_id = #{telId}
+        order by af.af_id desc
+    </select>
+
+    <select id="getAqiFeedbackById" parameterType="com.example.entity.AqiFeedback">
+        select * from aqi_feedback where af_id = #{afId}
+    </select>
+
+    <update id="updateAqiFeedbackAssign" parameterType="com.example.entity.AqiFeedback">
+        update aqi_feedback
+        set gm_id = #{gmId}, assign_date = #{assignDate}, assign_time = #{assignTime}, state = #{state}
+        where af_id = #{afId}
+    </update>
+
+    <select id="listAqiFeedbackByGmId" resultType="map">
+        select af.af_id as afId,
+               af.tel_id as telId,
+               af.province_id as provinceId,
+               af.city_id as cityId,
+               af.address as address,
+               af.information as information,
+               af.estimated_grade as estimatedGrade,
+               af.af_date as afDate,
+               af.af_time as afTime,
+               af.gm_id as gmId,
+               af.assign_date as assignDate,
+               af.assign_time as assignTime,
+               af.state as state,
+               af.remarks as remarks,
+               p.province_name as provinceName,
+               c.city_name as cityName,
+               a.aqi_explain as aqiExplain,
+               a.chinese_explain as chineseExplain,
+               a.color as color,
+               s.real_name as realName
+        from aqi_feedback af
+        left join grid_province p on af.province_id = p.province_id
+        left join grid_city c on af.city_id = c.city_id
+        left join aqi a on af.estimated_grade = a.aqi_id
+        left join supervisor s on af.tel_id = s.tel_id
+        where af.gm_id = #{gmId}
+        order by af.af_id desc
+    </select>
+
+    <update id="updateAqiFeedbackState" parameterType="com.example.entity.AqiFeedback">
+        update aqi_feedback set state = #{state} where af_id = #{afId}
+    </update>
+
+</mapper>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.StatisticsMapper">
+
+    <!-- 分页查询统计数据 -->
+    <select id="listStatisticsPage" resultType="com.example.entity.Statistics">
+        select * from statistics
+        <where>
+            <if test="provinceId != null">and province_id = #{provinceId}</if>
+            <if test="cityId != null">and city_id = #{cityId}</if>
+            <if test="confirmDate != null and confirmDate != ''">and confirm_date = #{confirmDate}</if>
+        </where>
+        order by id desc
+    </select>
+
+    <!-- AQI指数分布统计 -->
+    <select id="listAqiDistributeTotalStatis" resultType="map">
+        select a.aqi_id as aqiId,
+               a.chinese_explain as chineseExplain,
+               count(s.id) as totalCount
+        from aqi a
+        left join statistics s on a.aqi_id = s.aqi_id
+        group by a.aqi_id, a.chinese_explain
+        order by a.aqi_id
+    </select>
+
+    <!-- AQI趋势统计（按月） -->
+    <select id="listAqiTrendTotalStatis" resultType="map">
+        select date_format(confirm_date, '%Y-%m') as statMonth,
+               count(id) as aqiOverCount
+        from statistics
+        where aqi_id >= 3
+        group by date_format(confirm_date, '%Y-%m')
+        order by statMonth
+    </select>
+
+    <!-- 各省份污染物超标统计 -->
+    <select id="listProvinceItemTotalStatis" resultType="map">
+        select p.province_id as provinceId,
+               p.province_abbr as provinceAbbr,
+               p.province_name as provinceName,
+               coalesce(sum(case when s.so2_level >= 3 then 1 else 0 end), 0) as so2OverCount,
+               coalesce(sum(case when s.co_level >= 3 then 1 else 0 end), 0) as coOverCount,
+               coalesce(sum(case when s.spm_level >= 3 then 1 else 0 end), 0) as spmOverCount,
+               coalesce(sum(case when s.aqi_id >= 3 then 1 else 0 end), 0) as aqiOverCount
+        from grid_province p
+        left join statistics s on p.province_id = s.province_id
+        group by p.province_id, p.province_abbr, p.province_name
+        order by p.province_id
+    </select>
+
+</mapper>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--配置接口路径-->
+<mapper namespace="com.example.mapper.AqiMapper">
+
+
+    <select id="listAqiAll" parameterType="com.example.entity.Aqi">
+        select * from aqi
+        order by aqi_id desc
+    </select>
+
+</mapper>

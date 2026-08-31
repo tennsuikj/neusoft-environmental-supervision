@@ -1,0 +1,19 @@
+# Java
+backend/target/
+*.class
+*.jar
+*.war
+
+# IDE
+.idea/
+*.iml
+.vscode/
+*.swp
+
+# Node
+frontend/node_modules/
+frontend/dist/
+
+# 运行时数据
+backend/files/
+*.log

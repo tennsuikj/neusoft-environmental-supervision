@@ -1,0 +1,9 @@
+-- 修复手机号相关列的类型（INT → VARCHAR）
+USE nep;
+
+ALTER TABLE grid_member MODIFY COLUMN tel VARCHAR(20);
+ALTER TABLE supervisor MODIFY COLUMN tel_id VARCHAR(20);
+ALTER TABLE aqi_feedback MODIFY COLUMN tel_id VARCHAR(20);
+ALTER TABLE aqi_feedback MODIFY COLUMN gm_id VARCHAR(20);
+ALTER TABLE statistics MODIFY COLUMN gm_id VARCHAR(20);
+ALTER TABLE statistics MODIFY COLUMN fd_id VARCHAR(20);
