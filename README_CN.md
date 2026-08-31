@@ -85,6 +85,22 @@ nep-system/
 - `POST /files/upload`、`GET /files/download/{fileName}`
 - `GET /hello` — 健康检查
 
+## 效果图
+
+| 系统架构 | 业务流程图 |
+|:---:|:---:|
+| ![系统架构](screenshots/architecture.png) | ![业务流程图](screenshots/business-flow.png) |
+
+| 公众监督员端（提交反馈） | 网格员端（任务列表） |
+|:---:|:---:|
+| ![公众监督员端](screenshots/supervisor.png) | ![网格员端](screenshots/grid-member.png) |
+
+| 管理员端 | 决策者可视化大屏 |
+|:---:|:---:|
+| ![管理员端](screenshots/admin.png) | ![可视化大屏](screenshots/dashboard.png) |
+
+![数据库ER图](screenshots/database-er.png)
+
 ## 快速启动
 
 1. **数据库**：MySQL 8 中创建数据库 `nep`，依次执行 `sql/` 下的脚本（数据库账号配置见 `backend/src/main/resources/application.yml`）

@@ -87,6 +87,22 @@ Base URL: `http://localhost:9090`
 - `POST /files/upload` / `GET /files/download/{fileName}`
 - `GET /hello` — health check
 
+## Screenshots
+
+| System Architecture | Business Flow |
+|:---:|:---:|
+| ![Architecture](screenshots/architecture.png) | ![Business Flow](screenshots/business-flow.png) |
+
+| Public Supervisor (feedback) | Grid Member (task list) |
+|:---:|:---:|
+| ![Public Supervisor](screenshots/supervisor.png) | ![Grid Member](screenshots/grid-member.png) |
+
+| Administrator | Data Dashboard |
+|:---:|:---:|
+| ![Administrator](screenshots/admin.png) | ![Data Dashboard](screenshots/dashboard.png) |
+
+![Database ER Diagram](screenshots/database-er.png)
+
 ## Quick Start
 
 1. **Database**: Create a `nep` database in MySQL 8 and run the scripts in `sql/` in order (DB credentials are configured in `backend/src/main/resources/application.yml`)
